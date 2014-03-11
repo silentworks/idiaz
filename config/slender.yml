@@ -1,0 +1,20 @@
+debug: true
+
+charset: utf8
+
+modules:
+  - Slender\Base
+  - ideas
+
+modulePaths:
+  - ./module
+
+#routes:
+#  home:
+#    route: /
+#    controller: Skeleton\HomepageController
+#    action: index
+#    methods:
+#      - GET
+#      - POST
+#      - PUT

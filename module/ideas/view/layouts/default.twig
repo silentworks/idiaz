@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Idiaz</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+	<header id="topbar">
+		<div class="pure-menu pure-menu-open pure-menu-horizontal">
+			<a href="/" class="pure-menu-heading">Idiaz</a>
+
+			<ul>
+				<li><a href="signup.html">Login</a></li>
+				<li><a href="signup.html" class="pure-button pure-button-primary">Sign Up</a></li>
+			</ul>
+		</div>
+	</header><!-- /topbar -->
+
+	<div id="work" class="section">
+		<div class="wide-container pure-g-r">
+
+			<h2 class="pure-u-1">{% block pageTitle %}{% endblock %}</h2>
+
+			{% block content %}{% endblock %}
+
+		</div>
+	</div><!-- /work -->
+</body>
+</html>
