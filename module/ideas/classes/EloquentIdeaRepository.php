@@ -46,9 +46,4 @@ class EloquentIdeaRepository implements IdeaRepository
     {
         return Idea::destroy($id);
     }
-
-    public function setIdea($idea)
-    {
-        $this->idea = $idea;
-    }
 }
