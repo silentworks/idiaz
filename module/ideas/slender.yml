@@ -16,11 +16,11 @@ twig:
 db:
   default:
     driver: mysql
-    host: 127.0.0.1
+    host: localhost
     port: 3306
     database: sharemyideas
-    username: serverside
-    password: password
+    username: homestead
+    password: secret
     prefix: ''
     charset: utf8
     collation: utf8_unicode_ci
