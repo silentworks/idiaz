@@ -2,7 +2,7 @@
     "name": "silentworks/idiaz",
     "type": "library",
     "description": "Ideas sharing website",
-    "keywords": ["app","framework","slim","slender"],
+    "keywords": ["app","framework","slim","slender","proton"],
     "license": "MIT",
     "version": "0.1.0",
     "homepage": "http://github.com/silentworks/idiaz",
@@ -13,12 +13,17 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "slender/slender": "dev-develop",
-        "slim/slim": "dev-develop#9d941addaa24d3dca8fc20ca85e72966b865ee76 as 3.0.0",
-        "illuminate/database": "4.1.*",
+        "php": ">=5.4.0",
+        "alexbilbie/proton": "1.0.*",
+        "vlucas/spot2": "~2.0",
         "aptoma/twig-markdown": "0.2.*",
         "michelf/php-markdown": "1.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Supprtz\\": "Supprtz/",
+            "Idiaz\\": "Idiaz/src/"
+        }
     },
     "minimum-stability": "dev"
 }

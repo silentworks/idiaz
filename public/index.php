@@ -1,9 +1,5 @@
 <?php
+$app = require_once __DIR__ . '/../bootstrap.php';
 
-define('ROOT', dirname(__DIR__));
-chdir(ROOT);
-
-require "vendor/autoload.php";
-
-$app = new Slender\App();
+/* Start your application */
 $app->run();
