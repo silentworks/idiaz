@@ -53,9 +53,6 @@ class ServiceProvider extends \Supprtz\Support\ServiceProvider
         $app['Idiaz\Action\IdeasShowAction'] = function () use ($app) {
             return new IdeasShowAction($app['request'], $app['idea.repository'], $app['http.response']);
         };
-        $app['Idiaz\IdeasController'] = function () use ($app) {
-            return new IdeasController($app['idea.repository'], $app['http.response']);
-        };
 
         /* Register Repository */
         $app['idea.repository'] = function () use ($app) {

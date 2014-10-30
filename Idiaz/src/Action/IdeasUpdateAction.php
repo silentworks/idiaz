@@ -18,14 +18,14 @@ class IdeasUpdateAction
         $this->request = $request;
     }
 
-    public function __invoke()
+    public function __invoke($id)
     {
-        $limit = $this->request->get('limit', 10);
-        $offset = $this->request->get('offset', 0);
+        $title = $this->request->get('title');
+        $content = $this->request->get('content');
 
-        $pageTitle = 'All Ideas';
-        $ideas = $this->idea->paginate($limit, $offset);
-
-        $this->response->make('ideas.twig', compact('pageTitle', 'ideas'));
+        $this->idea->update($id, array(
+            'title' => $title,
+            'content' => $content
+        ));
     }
 } 
