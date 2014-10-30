@@ -21,12 +21,16 @@ class IdeasStoreAction
 
     public function __invoke()
     {
-        $title = $this->request->get('title');
-        $content = $this->request->get('content');
+        $title = $this->request->post('title');
+        $content = $this->request->post('content');
 
         $idea = $this->idea->create(array(
             'title' => $title,
-            'content' => $content
+            'content' => $content,
+            'public' => 1,
+            'display' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
         ));
 
         return $this->redirectResponse->route('ideas.show', ['id' => $idea->id]);

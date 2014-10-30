@@ -19,6 +19,7 @@
                 <ul>
                     <li{% if '/' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ url_for('ideas') }}">Home</a></li>
                     <li{% if '/ideas' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ url_for('ideas.featured') }}">Featured</a></li>
+                    <li{% if '/ideas/new' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ url_for('ideas.create') }}">New Idea</a></li>
                 </ul>
             </div>
         </div>
