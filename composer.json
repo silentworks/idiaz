@@ -2,7 +2,7 @@
     "repositories": [
         {
             "type":"vcs",
-            "url":"/Users/andrewsmith/Copy/Sites/Personal/Brill"
+            "url":"https://github.com/silentworks/brill.git"
         }
     ],
     "name": "silentworks/idiaz",
