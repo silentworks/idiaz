@@ -1,0 +1,12 @@
+{
+  "name": "Idiaz",
+  "version": "0.2.0",
+  "description": "Ideas sharing website",
+  "main": "js/main.js",
+  "devDependencies": {
+    "browser-sync": "^1.6.2",
+    "gulp": "^3.8.9",
+    "gulp-sass": "^1.2.2",
+    "node-sass": "^1.1.4"
+  }
+}

@@ -2,3 +2,4 @@
 /vendor
 *.sublime-workspace
 composer.lock
+public/node_modules

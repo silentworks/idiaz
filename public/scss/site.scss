@@ -1,0 +1,44 @@
+@import "pure";
+@import "pure-grids-responsive";
+
+#layout {
+  padding: 0;
+}
+.l-box {
+  padding: 4em 1em;
+}
+.brand-title {
+  text-transform: uppercase;
+}
+.brand-tagline {
+  color: #94d6f1;
+  font-weight: 300;
+}
+.pure-menu {
+  &.pure-menu-open {
+    border: none;
+  }
+}
+.sidebar {
+  background-color: #00A6D5;
+  bottom: 0;
+  color: #fff;
+  position: fixed;
+  top: 0;
+}
+.content {
+  padding: 2em 3em 0;
+  margin-left: 20%;
+  .content-subhead {
+    text-transform: uppercase;
+    color: #aaa;
+    border-bottom: 1px solid #eee;
+    padding: 0.4em 0;
+    font-size: 80%;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+  .ideas {
+    border-bottom: 1px solid #eee;
+  }
+}
