@@ -12,13 +12,13 @@
                 <h1 class="brand-title">Idiaz</h1>
                 <h3 class="brand-tagline">Sharing ideas to generate ideas.</h3>
 
-                <a href="signup.html" class="pure-button pure-button-primary">Login</a> <a href="signup.html" class="pure-button pure-button-primary">Sign Up</a>
+                {#<a href="signup.html" class="pure-button pure-button-primary">Login</a> <a href="signup.html" class="pure-button pure-button-primary">Sign Up</a>#}
             </div>
 
             <div class="pure-menu pure-menu-open">
                 <ul>
-                    <li><a href="{{ url_for('ideas') }}">Home</a></li>
-                    <li><a href="{{ url_for('ideas.featured') }}">Featured</a></li>
+                    <li{% if '/' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ url_for('ideas') }}">Home</a></li>
+                    <li{% if '/ideas' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ url_for('ideas.featured') }}">Featured</a></li>
                 </ul>
             </div>
         </div>

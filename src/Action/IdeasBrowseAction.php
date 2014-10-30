@@ -21,7 +21,7 @@ class IdeasBrowseAction
     public function __invoke()
     {
         $limit = $this->request->get('limit', 10);
-        $offset = $this->request->get('offset', 0);
+        $offset = $this->request->get('page', 0);
 
         $pageTitle = 'All Ideas';
         $ideas = $this->idea->paginate($limit, $offset);

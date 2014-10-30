@@ -1,9 +1,9 @@
 {% extends 'layouts/default.twig' %}
 
-{% block pageTitle %}{{ idea.title }}{% endblock %}
+{% block pageTitle %}<a href="{{ url_for('ideas.show', {id: idea.id}) }}" class="idea-back">Back to {{ idea.title }}</a>{% endblock %}
 
 {% block content %}
-    <div class="intro pure-u-1">
+    <div id="idea-edit-form" class="pure-u-1">
         <form class="pure-form pure-form-stacked" action="{{ url_for('ideas.update', {id: idea.id}) }}" method="post">
             <fieldset>
                 <label for="title">Title</label>

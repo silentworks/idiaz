@@ -1,0 +1,30 @@
+{% extends 'layouts/default.twig' %}
+
+{% block pageTitle %}<a href="{{ url_for('ideas') }}" class="idea-back">Back to all Ideas</a> <a href="{{ url_for('ideas.edit', {id: idea.id}) }}" class="idea-edit">edit this idea</a>{% endblock %}
+
+{% block content %}
+    <section class="idea">
+        <header class="idea-header">
+            {#<img class="post-avatar" alt="Tilo Mitra's avatar" height="48" width="48" src="/img/common/tilo-avatar.png">#}
+
+            <h2 class="idea-title">{{ idea.title }}</h2>
+
+            {#<p class="post-meta">
+                By <a href="#" class="post-author">Tilo Mitra</a> under <a class="post-category post-category-design" href="#">CSS</a> <a class="post-category post-category-pure" href="#">Pure</a>
+            </p>#}
+        </header>
+
+        <div class="idea-description">
+            {{ idea.content|markdown }}
+        </div>
+    </section>
+
+    {#<div class="comments">
+        <header class="comments-header">
+            <h2 class="comments-subhead">Comments</h2>
+        </header>
+        <section class="comment">
+            This is just a test comment.
+        </section>
+    </div>#}
+{% endblock %}

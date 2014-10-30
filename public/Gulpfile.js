@@ -21,7 +21,7 @@ var banner = ['/**',
     ''].join('\n');
 
 var paths = {
-    twigDir: '../idiaz/view/**/*.twig',
+    twigDir: '../view/**/*.twig',
     jsDir: 'js/',
     js: 'js/**/*.js',
     scss: 'scss/**/*.scss',

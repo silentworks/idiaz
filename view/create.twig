@@ -3,7 +3,7 @@
 {% block pageTitle %}New Idea{% endblock %}
 
 {% block content %}
-    <div class="intro pure-u-1">
+    <div id="idea-edit-form" class="intro pure-u-1">
         <form class="pure-form pure-form-stacked" action="{{ url_for('ideas.store') }}" method="post">
             <fieldset>
                 <label for="title">Title</label>

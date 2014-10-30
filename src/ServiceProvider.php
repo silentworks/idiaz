@@ -36,7 +36,7 @@ class ServiceProvider extends \Supprtz\Support\ServiceProvider
             return new IdeasBrowseAction($app['request'], $app['idea.repository'], $app['http.response']);
         };
         $app['Idiaz\Action\IdeasFeaturedAction'] = function () use ($app) {
-            return new IdeasFeaturedAction($app['idea.repository'], $app['http.response']);
+            return new IdeasFeaturedAction($app['request'], $app['idea.repository'], $app['http.response']);
         };
         $app['Idiaz\Action\IdeasCreateAction'] = function () use ($app) {
             return new IdeasCreateAction($app['http.response']);

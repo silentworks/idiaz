@@ -1743,6 +1743,13 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 
 .pure-menu.pure-menu-open {
   border: none; }
+.pure-menu li a {
+  background-color: #00A6D5;
+  color: #fff; }
+  .pure-menu li a:hover {
+    color: #000; }
+.pure-menu .pure-menu-selected a {
+  background-color: #fff; }
 
 .sidebar {
   background-color: #00A6D5;
@@ -1762,5 +1769,32 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     font-size: 80%;
     font-weight: 500;
     letter-spacing: 0.1em; }
-  .content .ideas {
-    border-bottom: 1px solid #eee; }
+  .content .idea {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1.2em; }
+    .content .idea .idea-title {
+      margin: 1em 0 1em 0;
+      font-weight: 300;
+      color: #888;
+      position: relative; }
+      .content .idea .idea-title a {
+        text-decoration: none; }
+    .content .idea .idea-description {
+      color: #666;
+      font-family: Georgia, "Cambria", serif; }
+
+.idea-back, .idea-edit {
+  text-decoration: none; }
+
+.idea-edit {
+  float: right;
+  font-size: 0.8em; }
+
+#idea-edit-form input, #idea-edit-form textarea {
+  border: none;
+  border: 1px solid #eee;
+  box-shadow: none;
+  border-radius: 0;
+  margin-bottom: 1.5em; }
+  #idea-edit-form input:focus, #idea-edit-form textarea:focus {
+    background-color: #f7f7f7; }
