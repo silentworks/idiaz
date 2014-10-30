@@ -1,6 +1,6 @@
 <?php namespace Supprtz\Support;
 
-use Proton\Application;
+use Slim\App;
 
 class ServiceManager
 {
@@ -9,9 +9,9 @@ class ServiceManager
     protected $services = [];
 
     /**
-     * @param \Proton\Application $app
+     * @param \Slim\App $app
      */
-    public function __construct(Application $app)
+    public function __construct(App $app)
     {
         $this->app = $app;
     }
@@ -34,6 +34,5 @@ class ServiceManager
         foreach ($services as $service) {
             $this->register(new $service($this->app));
         }
-
     }
 } 

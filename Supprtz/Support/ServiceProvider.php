@@ -1,20 +1,20 @@
 <?php namespace Supprtz\Support;
 
-use Proton\Application;
+use Slim\App;
 
 abstract class ServiceProvider
 {
     /**
      * The application instance
      *
-     * @var \Proton\Application
+     * @var \Slim\App
      */
     protected $app;
 
     /**
-     * @param \Proton\Application $app
+     * @param \Slim\App $app
      */
-    public function __construct(Application $app)
+    public function __construct(App $app)
     {
         $this->app = $app;
     }

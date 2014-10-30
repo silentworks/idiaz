@@ -1,4 +1,10 @@
 {
+    "repositories": [
+        {
+            "type":"vcs",
+            "url":"/Users/andrewsmith/Copy/Sites/Personal/Brill"
+        }
+    ],
     "name": "silentworks/idiaz",
     "type": "library",
     "description": "Ideas sharing website",
@@ -14,7 +20,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "alexbilbie/proton": "1.0.*",
+        "brill/brill": "dev-master",
+        "slim/slim": "dev-develop",
         "vlucas/spot2": "~2.0",
         "aptoma/twig-markdown": "0.2.*",
         "michelf/php-markdown": "1.4.*"

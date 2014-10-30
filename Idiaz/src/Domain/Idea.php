@@ -1,5 +1,5 @@
 <?php
-namespace Idiaz;
+namespace Idiaz\Domain;
 
 /**
  * Idea

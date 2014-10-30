@@ -1,10 +1,10 @@
 {% extends 'layouts/default.twig' %}
 
-{% block pageTitle %}{{ pageTitle | default("New Idea") }}{% endblock %}
+{% block pageTitle %}New Idea{% endblock %}
 
 {% block content %}
     <div class="intro pure-u-1">
-        <form class="pure-form pure-form-stacked" action="" method="post">
+        <form class="pure-form pure-form-stacked" action="{{ url_for('ideas.store') }}" method="post">
             <fieldset>
                 <label for="title">Title</label>
                 <input name="title" id="title" type="text" placeholder="Title" class="pure-u-1" value="{{ idea.title }}">

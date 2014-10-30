@@ -1,6 +1,5 @@
-<?php namespace Supprtz\Providers;
-
-use Orno\Http\Response;
+<?php
+namespace Supprtz\Providers;
 
 class TwigResponse
 {
@@ -33,7 +32,6 @@ class TwigResponse
 
     public function render($template, array $data = [])
     {
-        $templateContent = $this->twig->render($template, $data);
-        return new Response($templateContent, $this->status, $this->headers);
+        return $this->twig->render($template, $data);
     }
 }

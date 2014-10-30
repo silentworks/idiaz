@@ -1,6 +1,6 @@
 {% extends 'layouts/default.twig' %}
 
-{% block pageTitle %}{{ idea.title }} <a href="/ideas/{{ idea.id }}/edit" class="idea-edit">edit</a>{% endblock %}
+{% block pageTitle %}{{ idea.title }} <a href="{{ url_for('ideas.edit', {id: idea.id}) }}" class="idea-edit">edit</a>{% endblock %}
 
 {% block content %}
     <div class="intro pure-u-1">

@@ -1,4 +1,5 @@
-<?php namespace Idiaz;
+<?php
+namespace Idiaz\Domain;
 
 class SpotIdeaRepository implements IdeaRepository
 {

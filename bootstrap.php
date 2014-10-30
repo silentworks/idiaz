@@ -1,7 +1,8 @@
 <?php
 require_once 'vendor/autoload.php';
 
-$app = new Proton\Application();
+$app = new Brill\Application();
+$app['resolver'] = new Brill\Resolvers\DependencyResolver($app);
 
 $app['service.manager'] = function () use ($app) {
     return new Supprtz\Support\ServiceManager($app);

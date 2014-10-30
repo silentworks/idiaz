@@ -1,4 +1,5 @@
-<?php namespace Supprtz\Providers;
+<?php
+namespace Supprtz\Providers;
 
 use Supprtz\Support\ServiceProvider;
 
@@ -10,8 +11,7 @@ class TwigServiceProvider extends ServiceProvider
         $this->app['twig.path'] = array();
         $this->app['twig.templates'] = array();
 
-        $this->app['twig'] = function () {
-            $app = $this->app;
+        $this->app['twig'] = function ($app) {
             $app['twig.options'] = array_replace(
                 array(
                     'charset' => isset($app['charset']) ? $app['charset'] : 'UTF-8',
@@ -21,7 +21,7 @@ class TwigServiceProvider extends ServiceProvider
             );
 
             /** @var \Twig_Environment $twig */
-            $twig = $app['twig.environment'];
+            $twig = $app['twig.environment']($app);
             $twig->addGlobal('app', $app);
 
             if (isset($app['debug']) && $app['debug']) {
@@ -31,23 +31,23 @@ class TwigServiceProvider extends ServiceProvider
             return $twig;
         };
 
-        $this->app['twig.loader.filesystem'] = function () {
-            return new \Twig_Loader_Filesystem($this->app['twig.path']);
+        $this->app['twig.loader.filesystem'] = function ($app) {
+            return new \Twig_Loader_Filesystem($app['twig.path']);
         };
 
-        $this->app['twig.loader.array'] = function () {
-            return new \Twig_Loader_Array($this->app['twig.templates']);
+        $this->app['twig.loader.array'] = function ($app) {
+            return new \Twig_Loader_Array($app['twig.templates']);
         };
 
-        $this->app['twig.loader'] = function () {
+        $this->app['twig.loader'] = function ($app) {
             return new \Twig_Loader_Chain(array(
-                $this->app['twig.loader.array'],
-                $this->app['twig.loader.filesystem'],
+                $app['twig.loader.array'],
+                $app['twig.loader.filesystem'],
             ));
         };
 
-        $this->app->getContainer()->add('twig.environment', function () {
-            return new \Twig_Environment($this->app['twig.loader'], $this->app['twig.options']);
+        $this->app['twig.environment'] = $this->app->protect(function ($app) {
+            return new \Twig_Environment($app['twig.loader'], $app['twig.options']);
         });
 
         $this->app['twig.response'] = function () {
