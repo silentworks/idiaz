@@ -30,6 +30,9 @@ class ServiceProvider extends \Supprtz\Support\ServiceProvider
         $app['http.response'] = function () use ($app) {
             return new HttpResponse($app['response'], $app['twig.response']);
         };
+        $app['redirect.response'] = function () use ($app) {
+            return new RedirectResponse($app);
+        };
 
         /* Register Actions */
         $app['Idiaz\Action\IdeasBrowseAction'] = function () use ($app) {
@@ -42,13 +45,13 @@ class ServiceProvider extends \Supprtz\Support\ServiceProvider
             return new IdeasCreateAction($app['http.response']);
         };
         $app['Idiaz\Action\IdeasStoreAction'] = function () use ($app) {
-            return new IdeasStoreAction($app['request'], $app['idea.repository'], $app['http.response']);
+            return new IdeasStoreAction($app['request'], $app['idea.repository'], $app['redirect.response']);
         };
         $app['Idiaz\Action\IdeasEditAction'] = function () use ($app) {
             return new IdeasEditAction($app['idea.repository'], $app['http.response']);
         };
         $app['Idiaz\Action\IdeasUpdateAction'] = function () use ($app) {
-            return new IdeasUpdateAction($app['request'], $app['idea.repository'], $app['http.response']);
+            return new IdeasUpdateAction($app['request'], $app['idea.repository'], $app['redirect.response']);
         };
         $app['Idiaz\Action\IdeasShowAction'] = function () use ($app) {
             return new IdeasShowAction($app['request'], $app['idea.repository'], $app['http.response']);

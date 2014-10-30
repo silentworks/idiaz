@@ -3,19 +3,20 @@ namespace Idiaz\Action;
 
 use Idiaz\Domain\IdeaRepository;
 use Idiaz\HttpResponse;
+use Idiaz\RedirectResponse;
 use Slim\Http\Request;
 
 class IdeasStoreAction
 {
     private $request;
     private $idea;
-    private $response;
+    private $redirectResponse;
 
-    function __construct(Request $request, IdeaRepository $idea, HttpResponse $response)
+    function __construct(Request $request, IdeaRepository $idea, RedirectResponse $redirectResponse)
     {
         $this->idea = $idea;
-        $this->response = $response;
         $this->request = $request;
+        $this->redirectResponse = $redirectResponse;
     }
 
     public function __invoke()
@@ -23,9 +24,11 @@ class IdeasStoreAction
         $title = $this->request->get('title');
         $content = $this->request->get('content');
 
-        $this->idea->create(array(
+        $idea = $this->idea->create(array(
             'title' => $title,
             'content' => $content
         ));
+
+        return $this->redirectResponse->route('ideas.show', ['id' => $idea->id]);
     }
 } 
