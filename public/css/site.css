@@ -1731,6 +1731,9 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 #layout {
   padding: 0; }
 
+.s-box {
+  padding: 1.5em 1em 1.4em; }
+
 .l-box {
   padding: 0.5em 1em 2em; }
 
@@ -1828,9 +1831,19 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   #idea-edit-form input:focus, #idea-edit-form textarea:focus {
     background-color: #f7f7f7; }
 
+#footer {
+  background-color: #365D78;
+  color: #fff;
+  text-align: center; }
+  #footer a {
+    color: #fff; }
+
 /* sm */
 /* md */
 @media (min-width: 48em) {
+  .s-box {
+    padding: 1em 1em 1.4em; }
+
   .l-box {
     padding: 4em 1em; }
 
@@ -1847,7 +1860,13 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 
   .content {
     padding: 2em 3em 0;
-    margin-left: 20%; }
+    margin-left: 25%; }
+
+  #footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: left; }
  }
 
 /* lg */

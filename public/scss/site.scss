@@ -4,6 +4,9 @@
 #layout {
   padding: 0;
 }
+.s-box {
+  padding: 1.5em 1em 1.4em;
+}
 .l-box {
   padding: .5em 1em 2em;
 }
@@ -128,11 +131,23 @@
   }
 }
 
+#footer {
+  background-color: #365D78;
+  color: #fff;
+  text-align: center;
+  a {
+    color: #fff;
+  }
+}
+
 /* sm */
 @media (min-width: 35.5em) {}
 
 /* md */
 @media (min-width: 48em) {
+  .s-box {
+    padding: 1em 1em 1.4em;
+  }
   .l-box {
     padding: 4em 1em;
   }
@@ -149,7 +164,13 @@
   }
   .content {
     padding: 2em 3em 0;
-    margin-left: 20%;
+    margin-left: 25%;
+  }
+  #footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: left;
   }
 }
 
