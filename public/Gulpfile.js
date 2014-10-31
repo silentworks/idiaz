@@ -4,8 +4,7 @@ var exec = require('child_process').exec;
 var pkg = require('./package.json');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
-/*var webpack = require('gulp-webpack');
-var webpackConfig = require("./webpack.config.js");*/
+var browserify = require('gulp-browserify');
 
 var env = process.env.NODE_ENV || 'development';
 
@@ -68,6 +67,16 @@ gulp.task('bs-reload', function () {
         .pipe(gulp.dest('dist/'));
 });*/
 
+gulp.task('scripts', function() {
+    // Single entry point to browserify
+    gulp.src('js/main.js')
+        .pipe(browserify({
+            insertGlobals: false,
+            debug: (env !== 'production')
+        }))
+        .pipe(gulp.dest('./dist'))
+});
+
 gulp.task('watch', function () {
     var path = require('path');
 
@@ -78,10 +87,10 @@ gulp.task('watch', function () {
     });
 
     /* watch js */
-    /*gulp.watch([paths.js, 'webpack.config.js'], ['webpack']).on('change', function (file) {
+    gulp.watch([paths.js], ['scripts']).on('change', function (file) {
         console.log('File changed: ' + path.relative('.', file.path));
         reload();
-    });*/
+    });
 
     /* watch scss */
     gulp.watch(paths.scss, ['sass']).on('change', function (file) {
