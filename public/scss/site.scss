@@ -46,13 +46,18 @@
 }
 .pure-menu {
   display: none;
+  &.active {
+    display: block;
+  }
   &.pure-menu-open {
+    background-color: transparent;
     border: none;
   }
   li {
     a {
       background-color: #00A6D5;
       color: #fff;
+      margin: 0 .8em;
       &:hover {
         color: #000;
       }
@@ -113,7 +118,6 @@
 }
 #idea-edit-form {
   input, textarea {
-    border: none;
     border: 1px solid #eee;
     box-shadow: none;
     border-radius: 0;

@@ -1770,11 +1770,15 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 
 .pure-menu {
   display: none; }
+  .pure-menu.active {
+    display: block; }
   .pure-menu.pure-menu-open {
+    background-color: transparent;
     border: none; }
   .pure-menu li a {
     background-color: #00A6D5;
-    color: #fff; }
+    color: #fff;
+    margin: 0 0.8em; }
     .pure-menu li a:hover {
       color: #000; }
   .pure-menu .pure-menu-selected a {
@@ -1817,7 +1821,6 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   font-size: 0.8em; }
 
 #idea-edit-form input, #idea-edit-form textarea {
-  border: none;
   border: 1px solid #eee;
   box-shadow: none;
   border-radius: 0;
