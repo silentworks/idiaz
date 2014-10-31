@@ -1732,7 +1732,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   padding: 0; }
 
 .l-box {
-  padding: 4em 1em; }
+  padding: 0.5em 1em 2em; }
 
 .brand-title {
   text-transform: uppercase; }
@@ -1741,26 +1741,52 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   color: #94d6f1;
   font-weight: 300; }
 
-.pure-menu.pure-menu-open {
-  border: none; }
-.pure-menu li a {
-  background-color: #00A6D5;
-  color: #fff; }
-  .pure-menu li a:hover {
-    color: #000; }
-.pure-menu .pure-menu-selected a {
-  background-color: #fff; }
+.menu-link {
+  background: #000;
+  font-size: 11px;
+  padding: 1em;
+  position: absolute;
+  top: 2em;
+  right: 1.4em;
+  height: 2em;
+  width: 2em;
+  z-index: 10; }
+  .menu-link span {
+    background-color: #fff;
+    height: 0.2em;
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-top: 0.9em; }
+    .menu-link span:before, .menu-link span:after {
+      background-color: #fff;
+      height: 0.2em;
+      position: absolute;
+      top: -0.55em;
+      content: " ";
+      width: 100%; }
+    .menu-link span:after {
+      top: 0.55em; }
+
+.pure-menu {
+  display: none; }
+  .pure-menu.pure-menu-open {
+    border: none; }
+  .pure-menu li a {
+    background-color: #00A6D5;
+    color: #fff; }
+    .pure-menu li a:hover {
+      color: #000; }
+  .pure-menu .pure-menu-selected a {
+    background-color: #fff; }
 
 .sidebar {
   background-color: #00A6D5;
-  bottom: 0;
   color: #fff;
-  position: fixed;
-  top: 0; }
+  position: relative; }
 
 .content {
-  padding: 2em 3em 0;
-  margin-left: 20%; }
+  padding: 2em 1em 0; }
   .content .content-subhead {
     text-transform: uppercase;
     color: #aaa;
@@ -1798,3 +1824,28 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   margin-bottom: 1.5em; }
   #idea-edit-form input:focus, #idea-edit-form textarea:focus {
     background-color: #f7f7f7; }
+
+/* sm */
+/* md */
+@media (min-width: 48em) {
+  .l-box {
+    padding: 4em 1em; }
+
+  .pure-menu {
+    display: block; }
+
+  .menu-link {
+    display: none; }
+
+  .sidebar {
+    bottom: 0;
+    position: fixed;
+    top: 0; }
+
+  .content {
+    padding: 2em 3em 0;
+    margin-left: 20%; }
+ }
+
+/* lg */
+/* xl */
