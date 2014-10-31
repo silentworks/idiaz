@@ -54,8 +54,8 @@ gulp.task('sass', function () {
 
     return gulp.src('scss/site.scss')
         .pipe(sass(config.sass))
-        .pipe(gulp.dest('css'))
-        .pipe(reload({stream:true}));
+        .pipe(gulp.dest('css'));
+        //.pipe(reload({stream:true}));
 });
 
 gulp.task('bs-reload', function () {
@@ -84,7 +84,10 @@ gulp.task('watch', function () {
     });*/
 
     /* watch scss */
-    gulp.watch(paths.scss, ['sass']);
+    gulp.watch(paths.scss, ['sass']).on('change', function (file) {
+        console.log('File changed: ' + path.relative('.', file.path));
+        reload();
+    });
 });
 
 gulp.task('build', ['sass']);
