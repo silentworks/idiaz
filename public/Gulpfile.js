@@ -61,12 +61,6 @@ gulp.task('bs-reload', function () {
     browserSync.reload();
 });
 
-/*gulp.task("webpack", function() {
-    return gulp.src('js/site')
-        .pipe(webpack(webpackConfig))
-        .pipe(gulp.dest('dist/'));
-});*/
-
 gulp.task('scripts', function() {
     // Single entry point to browserify
     gulp.src('js/main.js')
