@@ -11,7 +11,7 @@ class IdeasBrowseAction
     private $idea;
     private $response;
 
-    function __construct(Request $request, IdeaRepository $idea, HttpResponse $response)
+    public function __construct(Request $request, IdeaRepository $idea, HttpResponse $response)
     {
         $this->idea = $idea;
         $this->response = $response;
@@ -28,4 +28,4 @@ class IdeasBrowseAction
 
         $this->response->make('ideas.twig', compact('pageTitle', 'ideas'));
     }
-} 
+}
