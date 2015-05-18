@@ -7,7 +7,7 @@ use Idiaz\Controllers\MigrationsController;
 use Idiaz\Entity\Repository\IdeaRepository;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
-use Supprtz\Providers\TwigUrlExtension;
+use Idiaz\TwigUrlExtension;
 
 class ServiceProvider implements ServiceProviderInterface
 {
@@ -20,12 +20,19 @@ class ServiceProvider implements ServiceProviderInterface
         $app['db'] = function () use ($app) {
             $dbConfig = $app['db.config'];
             $cfg = new \Spot\Config();
-            $cfg->addConnection($dbConfig['default'], $dbConfig['connections'][$dbConfig['default']]);
+            $cfg->addConnection(
+            	$dbConfig['default'], 
+            	$dbConfig['connections'][$dbConfig['default']]
+        	);
             return new \Spot\Locator($cfg);
         };
 
-        $app['view']->getEnvironment()->addExtension(new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine()));
-        $app['view']->getEnvironment()->addExtension(new TwigUrlExtension($app));
+        $app['view']->getEnvironment()->addExtension(
+        	new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine())
+    	);
+        $app['view']->getEnvironment()->addExtension(
+        	new TwigUrlExtension($app['request'], $app['router'])
+		);
 
         /* Register Response */
         $app['http.response'] = function () use ($app) {

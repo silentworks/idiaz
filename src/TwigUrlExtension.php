@@ -30,17 +30,20 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace Supprtz\Providers;
+namespace Idiaz;
 
-use Slim\App;
+use Slim\Http\Request;
+use Slim\Router;
 
 class TwigUrlExtension extends \Twig_Extension
 {
-    protected $app;
+    protected $request;
+    protected $router;
 
-    public function __construct(App $app)
+    public function __construct(Request $request, Router $router)
     {
-        $this->app = $app;
+        $this->request = $request;
+        $this->router = $router;
     }
 
     public function getName()
@@ -53,7 +56,6 @@ class TwigUrlExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFunction('urlFor', array($this, 'urlFor')),
             new \Twig_SimpleFunction('url_for', array($this, 'urlFor')),
-            new \Twig_SimpleFunction('url', array($this, 'urlFor')),
             new \Twig_SimpleFunction('baseUrl', array($this, 'base')),
             new \Twig_SimpleFunction('siteUrl', array($this, 'site')),
             new \Twig_SimpleFunction('currentUrl', array($this, 'currentUrl')),
@@ -63,41 +65,39 @@ class TwigUrlExtension extends \Twig_Extension
 
     public function urlFor($name, $params = array())
     {
-        return $this->app['router']->urlFor($name, $params);
+        return $this->router->urlFor($name, $params);
     }
 
     public function site($url)
     {
-        return $this->base() . '/' . ltrim($url, '/');
+        return $this->base() . ltrim($url, '/');
     }
 
     public function base()
     {
-        /**@var \Slim\Http\Request $request */
-        $request = $this->app['request'];
+        $uri = $this->request->getUri();
+        $scheme = $uri->getScheme();
+        $authority = $uri->getAuthority();
+        $basePath = $uri->getBasePath();
 
-        return $request->getUrl();
+        return ($scheme ? $scheme . '://' : '') . $authority . $basePath;
     }
 
-    public function currentUrl($withQueryString = true)
+    public function currentUrl()
     {
-        /**@var \Slim\Http\Request $request */
-        $request = $this->app['request'];
-        $uri = $request->getUrl() . $request->getPath();
+        $uri = $this->request->getUri();
+        $scheme = $uri->getScheme();
+        $authority = $uri->getAuthority();
+        $basePath = $uri->getBasePath();
+        $path = ltrim($uri->getPath(), '/');
+        $query = $uri->getQuery();
+        $fragment = $uri->getFragment();
 
-        if ($withQueryString) {
-            $env = $this->app['environment'];
-
-            if ($env['QUERY_STRING']) {
-                $uri .= '?' . $env['QUERY_STRING'];
-            }
-        }
-
-        return $uri;
+        return ($scheme ? $scheme . '://' : '') . $authority . $basePath . $path . ($query ? '?' . $query : '') . ($fragment ? '#' . $fragment : '');
     }
 
     public function currentPath()
     {
-        return $this->app['request']->getUri()->getPath();
+        return $this->request->getUri()->getPath();
     }
 }

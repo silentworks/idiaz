@@ -4,7 +4,6 @@ namespace Idiaz;
 use Slim\Http\Response;
 use Slim\Router;
 use Slim\Views\Twig;
-use Supprtz\Providers\TwigResponse;
 
 class HttpResponse
 {
@@ -21,13 +20,13 @@ class HttpResponse
     /**
      * @var \Slim\Views\Twig
      */
-    private $twigResponse;
+    private $twig;
 
-    function __construct(Response $response, Router $router, Twig $twigResponse)
+    function __construct(Response $response, Router $router, Twig $twig)
     {
         $this->response = $response;
         $this->router = $router;
-        $this->twigResponse = $twigResponse;
+        $this->twig = $twig;
     }
 
     /**
@@ -37,7 +36,7 @@ class HttpResponse
     public function make($view, array $data = [])
     {
         return $this->response->write(
-            $this->twigResponse->fetch($view, $data)
+            $this->twig->fetch($view, $data)
         );
     }
 
