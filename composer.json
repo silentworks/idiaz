@@ -1,16 +1,10 @@
 {
-    "repositories": [
-        {
-            "type":"vcs",
-            "url":"https://github.com/silentworks/brill.git"
-        }
-    ],
     "name": "silentworks/idiaz",
     "type": "library",
     "description": "Ideas sharing website",
-    "keywords": ["app","framework","slim","slender","proton"],
+    "keywords": ["app","framework","slim","proton"],
     "license": "MIT",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "homepage": "http://github.com/silentworks/idiaz",
     "authors": [
         {
@@ -20,15 +14,11 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "brill/brill": "dev-master",
-        "slim/slim": "dev-develop",
-        "vlucas/spot2": "~2.0",
-        "aptoma/twig-markdown": "0.2.*",
-        "michelf/php-markdown": "1.4.*"
-    },
-    "require-dev": {
-        "symfony/console": "~2.5",
-        "rossriley/doctrine-migrations-helper": "dev-master"
+        "slim/slim": "~3.0",
+        "aptoma/twig-markdown": "~0.2",
+        "michelf/php-markdown": "~1.4",
+        "slim/twig-view": "dev-master",
+        "vlucas/spot2": "~2.0"
     },
     "autoload": {
         "psr-4": {
@@ -36,5 +26,6 @@
             "Idiaz\\": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "prefer-stable": false
 }

@@ -63,7 +63,7 @@ class TwigUrlExtension extends \Twig_Extension
 
     public function urlFor($name, $params = array())
     {
-        return $this->app->urlFor($name, $params);
+        return $this->app['router']->urlFor($name, $params);
     }
 
     public function site($url)
@@ -98,6 +98,6 @@ class TwigUrlExtension extends \Twig_Extension
 
     public function currentPath()
     {
-        return $this->app['request']->getPath();
+        return $this->app['request']->getUri()->getPath();
     }
 }

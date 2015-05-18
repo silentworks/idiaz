@@ -6,10 +6,10 @@ return array(
 
         'mysql' => array(
             'driver' => 'pdo_mysql',
-            'host' => 'db',
+            'host' => 'localhost',
             'dbname' => 'idiaz',
-            'user' => 'root',
-            'password' => '',
+            'user' => 'homestead',
+            'password' => 'secret',
             'charset' => 'utf8',
         ),
     )

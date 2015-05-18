@@ -1,24 +1,15 @@
 <?php
 require_once 'vendor/autoload.php';
 
-$app = new Brill\Application();
-$app['resolver'] = new Brill\Resolvers\DependencyResolver($app);
-
-$app['service.manager'] = function () use ($app) {
-    return new Supprtz\Support\ServiceManager($app);
-};
-
-/* Services setup */
-$app['service.manager']->registerServices(require __DIR__ . '/config/providers.php');
+$app = new Slim\App();
+$app->register(new \Slim\Views\Twig(__DIR__ . '/view'))
+    ->register(new \Idiaz\ServiceProvider());
 
 /* Database */
 require_once 'config/database.php';
 
 /* Middleware */
 require_once 'config/middleware.php';
-
-/* Include IoC */
-require_once 'config/ioc.php';
 
 /* Include routes */
 require_once 'config/routes.php';

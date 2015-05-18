@@ -1,10 +1,10 @@
 <?php
-namespace Idiaz\Domain;
+namespace Idiaz\Entity\Repository;
 
 /**
  * IdeaRepository
  */
-interface IdeaRepository
+interface IdeaInterface
 {
     public function all();
 

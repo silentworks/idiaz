@@ -1,7 +1,7 @@
 <?php
-namespace Idiaz\Domain;
+namespace Idiaz\Entity\Repository;
 
-class SpotIdeaRepository implements IdeaRepository
+final class IdeaRepository implements IdeaInterface
 {
     /**
      * @var \Spot\MapperInterface

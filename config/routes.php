@@ -1,15 +1,25 @@
 <?php
 /* Show all and featured ideas routes */
-$app->get('/', 'Idiaz\Action\IdeasBrowseAction:__invoke')->name('ideas');
-$app->get('/ideas', 'Idiaz\Action\IdeasFeaturedAction:__invoke')->name('ideas.featured');
+$app->get('/', 'Idiaz\Controllers\IdeasController:index')
+	->setName('ideas');
+$app->get('/ideas', 'Idiaz\Controllers\IdeasController:featured')
+	->setName('ideas.featured');
 
 /* New idea routes */
-$app->get('/ideas/new', 'Idiaz\Action\IdeasCreateAction:__invoke')->name('ideas.create');
-$app->post('/ideas/new', 'Idiaz\Action\IdeasStoreAction:__invoke')->name('ideas.store');
+$app->get('/ideas/new', 'Idiaz\Controllers\IdeasController:create')
+	->setName('ideas.create');
+$app->post('/ideas/new', 'Idiaz\Controllers\IdeasController:store')
+	->setName('ideas.store');
 
 /* Show a route */
-$app->get('/ideas/:id', 'Idiaz\Action\IdeasShowAction:__invoke')->name('ideas.show');
+$app->get('/ideas/{id}', 'Idiaz\Controllers\IdeasController:show')
+	->setName('ideas.show');
 
 /* Editing idea routes */
-$app->get('/ideas/:id/edit', 'Idiaz\Action\IdeasEditAction:__invoke')->name('ideas.edit');
-$app->post('/ideas/:id/edit', 'Idiaz\Action\IdeasUpdateAction:__invoke')->name('ideas.update');
+$app->get('/ideas/{id}/edit', 'Idiaz\Controllers\IdeasController:edit')
+	->setName('ideas.edit');
+$app->post('/ideas/{id}/edit', 'Idiaz\Controllers\IdeasController:update')
+	->setName('ideas.update');
+
+/* Migrations */
+$app->get('/migrations/up', 'Idiaz\Controllers\MigrationsController:up');

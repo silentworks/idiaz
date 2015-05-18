@@ -2,64 +2,48 @@
 
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
-use Idiaz\Action\IdeasBrowseAction;
-use Idiaz\Action\IdeasCreateAction;
-use Idiaz\Action\IdeasEditAction;
-use Idiaz\Action\IdeasFeaturedAction;
-use Idiaz\Action\IdeasShowAction;
-use Idiaz\Action\IdeasStoreAction;
-use Idiaz\Action\IdeasUpdateAction;
-use Idiaz\Domain\SpotIdeaRepository;
+use Idiaz\Controllers\IdeasController;
+use Idiaz\Controllers\MigrationsController;
+use Idiaz\Entity\Repository\IdeaRepository;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use Supprtz\Providers\TwigUrlExtension;
 
-class ServiceProvider extends \Supprtz\Support\ServiceProvider
+class ServiceProvider implements ServiceProviderInterface
 {
-    public function register()
+    public function register(Container $app)
     {
-        $app = $this->app;
+        $app['db.config'] = function () {
+            return require dirname(__DIR__) . '/config/database.php';
+        };
 
-        /* Register View Directory to Twig */
-        $app['twig.path'] = array(
-            __DIR__ . '/../view'
-        );
+        $app['db'] = function () use ($app) {
+            $dbConfig = $app['db.config'];
+            $cfg = new \Spot\Config();
+            $cfg->addConnection($dbConfig['default'], $dbConfig['connections'][$dbConfig['default']]);
+            return new \Spot\Locator($cfg);
+        };
 
-        $app['twig']->addExtension(new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine()));
-        $app['twig']->addExtension(new TwigUrlExtension($app));
+        $app['view']->getEnvironment()->addExtension(new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine()));
+        $app['view']->getEnvironment()->addExtension(new TwigUrlExtension($app));
 
         /* Register Response */
         $app['http.response'] = function () use ($app) {
-            return new HttpResponse($app['response'], $app['twig.response']);
-        };
-        $app['redirect.response'] = function () use ($app) {
-            return new RedirectResponse($app);
+            return new HttpResponse($app['response'], $app['router'], $app['view']);
         };
 
         /* Register Actions */
-        $app['Idiaz\Action\IdeasBrowseAction'] = function () use ($app) {
-            return new IdeasBrowseAction($app['request'], $app['idea.repository'], $app['http.response']);
+        $app['Idiaz\Controllers\IdeasController'] = function () use ($app) {
+            return new IdeasController($app['http.response'], $app['idea.repository']);
         };
-        $app['Idiaz\Action\IdeasFeaturedAction'] = function () use ($app) {
-            return new IdeasFeaturedAction($app['request'], $app['idea.repository'], $app['http.response']);
-        };
-        $app['Idiaz\Action\IdeasCreateAction'] = function () use ($app) {
-            return new IdeasCreateAction($app['http.response']);
-        };
-        $app['Idiaz\Action\IdeasStoreAction'] = function () use ($app) {
-            return new IdeasStoreAction($app['request'], $app['idea.repository'], $app['redirect.response']);
-        };
-        $app['Idiaz\Action\IdeasEditAction'] = function () use ($app) {
-            return new IdeasEditAction($app['idea.repository'], $app['http.response']);
-        };
-        $app['Idiaz\Action\IdeasUpdateAction'] = function () use ($app) {
-            return new IdeasUpdateAction($app['request'], $app['idea.repository'], $app['redirect.response']);
-        };
-        $app['Idiaz\Action\IdeasShowAction'] = function () use ($app) {
-            return new IdeasShowAction($app['request'], $app['idea.repository'], $app['http.response']);
+
+        $app['Idiaz\Controllers\MigrationsController'] = function () use ($app) {
+            return new MigrationsController($app['db']);
         };
 
         /* Register Repository */
         $app['idea.repository'] = function () use ($app) {
-            return new SpotIdeaRepository($app['db']->mapper('Idiaz\Domain\Idea'));
+            return new IdeaRepository($app['db']->mapper('Idiaz\Entity\Idea'));
         };
     }
 }
