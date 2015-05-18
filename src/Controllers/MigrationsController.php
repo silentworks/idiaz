@@ -9,14 +9,14 @@ use Spot\Mapper;
  */
 class MigrationsController
 {
-  public function __construct(Locator $db)
-  {
-    $this->db = $db;
-  }
+    public function __construct(Locator $db)
+    {
+        $this->db = $db;
+    }
 
-  public function up()
-  {
-    $mapper = $this->db->mapper('Idiaz\Entity\Idea');
-    $mapper->migrate();
-  }
+    public function up()
+    {
+        $mapper = $this->db->mapper('Idiaz\Entity\Idea');
+        $mapper->migrate();
+    }
 }

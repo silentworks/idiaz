@@ -42,12 +42,12 @@ class HttpResponse
 
     public function redirectTo($routeName, array $args = [])
     {
-    	$urlFor = $this->router->urlFor($routeName, $args);
-    	return $this->response->withRedirect($urlFor);
+        $urlFor = $this->router->urlFor($routeName, $args);
+        return $this->response->withRedirect($urlFor);
     }
 
     public function redirect($url)
     {
-    	return $this->response->withRedirect($url);
+        return $this->response->withRedirect($url);
     }
 }

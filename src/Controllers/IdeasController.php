@@ -64,19 +64,19 @@ class IdeasController
         ));
 
         return $this->response->redirectTo('ideas.show', [
-        	'id' => $idea->id
-    	]);
+            'id' => $idea->id
+        ]);
     }
 
     public function edit($request, $response, $args)
     {
-    	$idea = $this->idea->find($args['id']);
+        $idea = $this->idea->find($args['id']);
         return $this->response->make('edit.twig', compact('idea'));
     }
 
     public function update($request, $response, $args)
     {
-    	$title = $request->getParam('title');
+        $title = $request->getParam('title');
         $content = $request->getParam('content');
 
         $this->idea->update($args['id'], array(
@@ -85,7 +85,7 @@ class IdeasController
         ));
 
         return $this->response->redirectTo('ideas.edit', [
-        	'id' => $args['id']
-    	]);
+            'id' => $args['id']
+        ]);
     }
 }

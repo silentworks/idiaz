@@ -21,18 +21,18 @@ class ServiceProvider implements ServiceProviderInterface
             $dbConfig = $app['db.config'];
             $cfg = new \Spot\Config();
             $cfg->addConnection(
-            	$dbConfig['default'], 
-            	$dbConfig['connections'][$dbConfig['default']]
-        	);
+                $dbConfig['default'], 
+                $dbConfig['connections'][$dbConfig['default']]
+            );
             return new \Spot\Locator($cfg);
         };
 
         $app['view']->getEnvironment()->addExtension(
-        	new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine())
-    	);
+            new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine())
+        );
         $app['view']->getEnvironment()->addExtension(
-        	new TwigUrlExtension($app['request'], $app['router'])
-		);
+            new TwigUrlExtension($app['request'], $app['router'])
+        );
 
         /* Register Response */
         $app['http.response'] = function () use ($app) {
