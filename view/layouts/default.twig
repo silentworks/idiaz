@@ -22,9 +22,9 @@
 
             <div class="pure-menu pure-menu-open">
                 <ul>
-                    <li{% if '/' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ url_for('ideas') }}">Home</a></li>
-                    <li{% if '/ideas' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ url_for('ideas.featured') }}">Featured</a></li>
-                    <li class="idea-create{% if '/ideas/new' == currentPath() %} pure-menu-selected{% endif %}"><a href="{{ url_for('ideas.create') }}">New Idea</a></li>
+                    <li{% if '/' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ path_for('ideas') }}">Home</a></li>
+                    <li{% if '/ideas' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ path_for('ideas.featured') }}">Featured</a></li>
+                    <li class="idea-create{% if '/ideas/new' == currentPath() %} pure-menu-selected{% endif %}"><a href="{{ path_for('ideas.create') }}">New Idea</a></li>
                 </ul>
             </div>
         </div>

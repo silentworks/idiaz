@@ -48,24 +48,17 @@ class TwigUrlExtension extends \Twig_Extension
 
     public function getName()
     {
-        return 'slim';
+        return 'idiaz';
     }
 
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('urlFor', array($this, 'urlFor')),
-            new \Twig_SimpleFunction('url_for', array($this, 'urlFor')),
             new \Twig_SimpleFunction('baseUrl', array($this, 'base')),
             new \Twig_SimpleFunction('siteUrl', array($this, 'site')),
             new \Twig_SimpleFunction('currentUrl', array($this, 'currentUrl')),
             new \Twig_SimpleFunction('currentPath', array($this, 'currentPath')),
         );
-    }
-
-    public function urlFor($name, $params = array())
-    {
-        return $this->router->urlFor($name, $params);
     }
 
     public function site($url)

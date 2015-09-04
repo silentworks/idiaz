@@ -9,7 +9,7 @@
             <header class="idea-header">
                 {#<img class="post-avatar" alt="Tilo Mitra's avatar" height="48" width="48" src="/img/common/tilo-avatar.png">#}
 
-                <h2 class="idea-title"><a href="{{ url_for('ideas.show', {id: idea.id}) }}">{{ idea.title }}</a></h2>
+                <h2 class="idea-title"><a href="{{ path_for('ideas.show', {id: idea.id}) }}">{{ idea.title }}</a></h2>
 
                 {#<p class="post-meta">
                     By <a href="#" class="post-author">Tilo Mitra</a> under <a class="post-category post-category-design" href="#">CSS</a> <a class="post-category post-category-pure" href="#">Pure</a>

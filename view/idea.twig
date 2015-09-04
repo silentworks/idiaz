@@ -1,6 +1,6 @@
 {% extends 'layouts/default.twig' %}
 
-{% block pageTitle %}<a href="{{ url_for('ideas') }}" class="idea-back">Back to all Ideas</a> <a href="{{ url_for('ideas.edit', {id: idea.id}) }}" class="idea-edit">edit this idea</a>{% endblock %}
+{% block pageTitle %}<a href="{{ path_for('ideas') }}" class="idea-back">Back to all Ideas</a> <a href="{{ path_for('ideas.edit', {id: idea.id}) }}" class="idea-edit">edit this idea</a>{% endblock %}
 
 {% block content %}
     <section class="idea">
