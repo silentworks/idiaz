@@ -27,12 +27,25 @@ class ServiceProvider implements ServiceProviderInterface
             return new \Spot\Locator($cfg);
         };
 
-        $app['view']->getEnvironment()->addExtension(
-            new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine())
-        );
-        $app['view']->getEnvironment()->addExtension(
-            new TwigUrlExtension($app['request'], $app['router'])
-        );
+        $app['view'] = function ($c)
+        {
+            $view = new \Slim\Views\Twig(dirname(__DIR__) . '/view');
+
+            // Instantiate and add Slim specific extension
+            $view->addExtension(new \Slim\Views\TwigExtension(
+                $c['router'],
+                $c['request']->getUri()
+            ));
+
+            $view->addExtension(
+                new MarkdownExtension(new MarkdownEngine\MichelfMarkdownEngine())
+            );
+            $view->addExtension(
+                new TwigUrlExtension($c['request'], $c['router'])
+            );
+
+            return $view;
+        };
 
         /* Register Response */
         $app['http.response'] = function () use ($app) {
