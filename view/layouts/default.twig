@@ -15,11 +15,11 @@
 
                 {#<a href="signup.html" class="pure-button pure-button-primary">Login</a> <a href="signup.html" class="pure-button pure-button-primary">Sign Up</a>#}
             </div>
-
+            {% block menuSection %}
             <a class="menu-link" href="#">
                 <span></span>
             </a>
-
+            
             <div class="pure-menu pure-menu-open">
                 <ul>
                     <li{% if '/' == currentPath() %} class="pure-menu-selected"{% endif %}><a href="{{ path_for('ideas') }}">Home</a></li>
@@ -27,6 +27,7 @@
                     <li class="idea-create{% if '/ideas/new' == currentPath() %} pure-menu-selected{% endif %}"><a href="{{ path_for('ideas.create') }}">New Idea</a></li>
                 </ul>
             </div>
+            {% endblock %}
         </div>
 
         <div class="content pure-u-1 pure-u-md-3-4">

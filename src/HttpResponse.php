@@ -8,11 +8,6 @@ use Slim\Views\Twig;
 class HttpResponse
 {
     /**
-     * @var \Slim\Http\Response
-     */
-    private $response;
-
-    /**
      * @var \Slim\Router
      */
     private $router;
@@ -22,9 +17,8 @@ class HttpResponse
      */
     private $twig;
 
-    function __construct(Response $response, Router $router, Twig $twig)
+    function __construct(Router $router, Twig $twig)
     {
-        $this->response = $response;
         $this->router = $router;
         $this->twig = $twig;
     }
@@ -33,21 +27,21 @@ class HttpResponse
      * @param $view
      * @param array $data
      */
-    public function make($view, array $data = [])
+    public function make(Response $response, $view, array $data = [])
     {
-        return $this->response->write(
+        return $response->write(
             $this->twig->fetch($view, $data)
         );
     }
 
-    public function redirectTo($routeName, array $args = [])
+    public function redirectTo(Response $response, $routeName, array $args = [])
     {
         $urlFor = $this->router->urlFor($routeName, $args);
-        return $this->response->withRedirect($urlFor);
+        return $response->withRedirect($urlFor);
     }
 
-    public function redirect($url)
+    public function redirect(Response $response, $url)
     {
-        return $this->response->withRedirect($url);
+        return $response->withRedirect($url);
     }
 }

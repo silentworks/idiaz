@@ -1,0 +1,15 @@
+{% extends 'layouts/default.twig' %}
+
+{% block pageTitle %}Install{% endblock %}
+{% block menuSection %}{% endblock %}
+
+{% block content %}
+    {% markdown %}
+        Once you have configured all your database settings inside of `config/database.php`. You can now create the table and insert dummy data by using the links below.
+    {% endmarkdown %}
+
+    <ul>
+        <li><a href="{{ path_for('install.table') }}">Create Table</a></li>
+        <li><a href="{{ path_for('install.data') }}">Install dummy data</a></li>
+    </ul>
+{% endblock %}
