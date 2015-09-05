@@ -3,7 +3,7 @@
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
 use Idiaz\Controllers\IdeasController;
-use Idiaz\Controllers\MigrationsController;
+use Idiaz\Controllers\InstallController;
 use Idiaz\Entity\Repository\IdeaRepository;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
@@ -49,7 +49,7 @@ class ServiceProvider implements ServiceProviderInterface
 
         /* Register Response */
         $app['http.response'] = function () use ($app) {
-            return new HttpResponse($app['response'], $app['router'], $app['view']);
+            return new HttpResponse($app['router'], $app['view']);
         };
 
         /* Register Actions */
@@ -57,8 +57,8 @@ class ServiceProvider implements ServiceProviderInterface
             return new IdeasController($app['http.response'], $app['idea.repository']);
         };
 
-        $app['Idiaz\Controllers\MigrationsController'] = function () use ($app) {
-            return new MigrationsController($app['db']);
+        $app['Idiaz\Controllers\InstallController'] = function () use ($app) {
+            return new InstallController($app['http.response'], $app['db']->mapper('Idiaz\Entity\Idea'));
         };
 
         /* Register Repository */

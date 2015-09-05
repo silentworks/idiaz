@@ -21,5 +21,10 @@ $app->get('/ideas/{id}/edit', 'Idiaz\Controllers\IdeasController:edit')
 $app->post('/ideas/{id}/edit', 'Idiaz\Controllers\IdeasController:update')
 	->setName('ideas.update');
 
-/* Migrations */
-$app->get('/migrations/up', 'Idiaz\Controllers\MigrationsController:up');
+/* Installation */
+$app->get('/install', 'Idiaz\Controllers\InstallController:index')
+    ->setName('install');
+$app->get('/install/table', 'Idiaz\Controllers\InstallController:table')
+    ->setName('install.table');
+$app->get('/install/data', 'Idiaz\Controllers\InstallController:data')
+    ->setName('install.data');

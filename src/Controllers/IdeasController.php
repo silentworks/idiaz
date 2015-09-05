@@ -18,7 +18,7 @@ class IdeasController
         $this->idea = $idea;
     }
 
-    public function index($request)
+    public function index($request, $response)
     {
         $limit = $request->getParam('limit');
         $offset = $request->getParam('offset');
@@ -26,44 +26,44 @@ class IdeasController
         $pageTitle = 'All Ideas';
         $ideas = $this->idea->paginate($limit, $offset);
 
-        return $this->response->make('ideas.twig', compact('pageTitle', 'ideas'));
+        return $this->response->make($response, 'ideas.twig', compact('pageTitle', 'ideas'));
     }
 
-    public function featured($request)
+    public function featured($request, $response)
     {
         $limit = $request->getParam('limit', 6);
         $offset = $request->getParam('page', 0);
 
         $ideas = $this->idea->paginate($limit, $offset);
-        return $this->response->make('ideas.twig', compact('ideas'));
+        return $this->response->make($response, 'ideas.twig', compact('ideas'));
     }
 
     public function show($request, $response, $args)
     {
         $idea = $this->idea->find($args['id']);
-        return $this->response->make('idea.twig', compact('idea'));
+        return $this->response->make($response, 'idea.twig', compact('idea'));
     }
 
-    public function create()
+    public function create($request, $response)
     {
-        return $this->response->make('create.twig');
+        return $this->response->make($response, 'create.twig');
     }
 
-    public function store($request)
+    public function store($request, $response)
     {
         $title = $request->getParam('title');
         $content = $request->getParam('content');
 
-        $idea = $this->idea->create(array(
+        $idea = $this->idea->create([
             'title' => $title,
             'content' => $content,
             'public' => 1,
             'display' => 1,
             'created_by' => 1,
             'updated_by' => 1,
-        ));
+        ]);
 
-        return $this->response->redirectTo('ideas.show', [
+        return $this->response->redirectTo($response, 'ideas.show', [
             'id' => $idea->id
         ]);
     }
@@ -71,7 +71,7 @@ class IdeasController
     public function edit($request, $response, $args)
     {
         $idea = $this->idea->find($args['id']);
-        return $this->response->make('edit.twig', compact('idea'));
+        return $this->response->make($response, 'edit.twig', compact('idea'));
     }
 
     public function update($request, $response, $args)
@@ -79,12 +79,12 @@ class IdeasController
         $title = $request->getParam('title');
         $content = $request->getParam('content');
 
-        $this->idea->update($args['id'], array(
+        $this->idea->update($args['id'], [
             'title' => $title,
             'content' => $content
-        ));
+        ]);
 
-        return $this->response->redirectTo('ideas.edit', [
+        return $this->response->redirectTo($response, 'ideas.edit', [
             'id' => $args['id']
         ]);
     }
