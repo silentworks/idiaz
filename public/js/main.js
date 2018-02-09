@@ -1,16 +1,13 @@
-var $ = require('jquery');
+var mainMenu = document.querySelector('.pure-menu');
+var menuLink = document.querySelector('.menu-link');
 
-$(document).ready(function () {
-    $mainMenu = $('.pure-menu');
-    $('.menu-link').on('click', function (e) {
-        $self = $(this);
-        if ($self.hasClass('active')) {
-            $self.removeClass('active');
-            $mainMenu.removeClass('active');
-        } else {
-            $self.addClass('active');
-            $mainMenu.addClass('active');
-        }
-        e.preventDefault();
-    })
+menuLink.addEventListener('click', function (event) {
+	if (this.classList.contains('active')) {
+		this.classList.remove('active');
+		mainMenu.classList.remove('active');
+	} else {
+		this.classList.add('active');
+		mainMenu.classList.add('active');
+	}
+	event.preventDefault();
 });
