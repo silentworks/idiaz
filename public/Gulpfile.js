@@ -21,8 +21,6 @@ var banner = ['/**',
 
 var paths = {
     twigDir: '../view/**/*.twig',
-    jsDir: 'js/',
-    js: 'js/**/*.js',
     scss: 'scss/**/*.scss',
     production: 'dist/'
 };
@@ -61,27 +59,11 @@ gulp.task('bs-reload', function () {
     browserSync.reload();
 });
 
-gulp.task('scripts', function() {
-    // Single entry point to browserify
-    gulp.src('js/main.js')
-        .pipe(browserify({
-            insertGlobals: false,
-            debug: (env !== 'production')
-        }))
-        .pipe(gulp.dest('./dist'))
-});
-
 gulp.task('watch', function () {
     var path = require('path');
 
     /* watch html */
     gulp.watch(paths.twigDir).on('change', function(file) {
-        console.log('File changed: ' + path.relative('.', file.path));
-        reload();
-    });
-
-    /* watch js */
-    gulp.watch([paths.js], ['scripts']).on('change', function (file) {
         console.log('File changed: ' + path.relative('.', file.path));
         reload();
     });
