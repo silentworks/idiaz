@@ -84,7 +84,7 @@ class IdeasController
             'content' => $content
         ]);
 
-        return $this->response->redirectTo($response, 'ideas.edit', [
+        return $this->response->redirectTo($response, 'ideas.show', [
             'id' => $args['id']
         ]);
     }
